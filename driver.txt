@@ -1,0 +1,4 @@
+1 Jignesh car
+5 Ramesh auto
+7 Suresh bike
+18 Ajay bike
