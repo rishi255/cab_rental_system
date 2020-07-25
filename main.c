@@ -207,7 +207,7 @@ void FinishTrip (ull id, Status* shead)
 void AddHistory(History** histhead, ull driverID, Passenger* pnode)
 // adds history node at end of History
 {
-    printf("making history...\n");
+    printf("Making history... ");
     History* hnew = (History*)malloc(sizeof(History));
     History* hptr = *histhead;
 
@@ -229,7 +229,7 @@ void AddHistory(History** histhead, ull driverID, Passenger* pnode)
     hptr->next = hnew;
     hnew->next = null;
     hnew->prev = hptr;
-    printf("history made");
+    printf("history made!\n");
 }
 
 Passenger* AddPassenger (Passenger** head, ull pid)
@@ -329,7 +329,7 @@ Status* CalcNearby (Passenger* pnode, Status* shead)
 void UpdateDriver(Driver* dhead,  Status* shead)
 {
     // D R I V E R
-    FILE* fdriv = fopen("driver.txt", "w");
+    FILE* fdriv = fopen("data/driver.txt", "w");
     if(fdriv == null)
         printf("driver.txt failed to open.");
     else
@@ -349,7 +349,7 @@ void UpdateDriver(Driver* dhead,  Status* shead)
 void UpdateStatus (Status* shead)
 {
     // S T A T U S
-    FILE* fstat = fopen("status.txt", "w");
+    FILE* fstat = fopen("data/status.txt", "w");
     if(fstat == null)
         printf("status.txt failed to open.");
     else
@@ -365,10 +365,11 @@ void UpdateStatus (Status* shead)
     }
     fclose(fstat);
 }
+
 void UpdateHistoryPassenger(Passenger* phead, History* hhead)
 {
     // P A S S E N G E R
-    FILE* fpass = fopen("passenger.txt", "w");
+    FILE* fpass = fopen("data/passenger.txt", "w");
     if(fpass == null)
         printf("passenger.txt failed to open.");
     else
@@ -386,7 +387,7 @@ void UpdateHistoryPassenger(Passenger* phead, History* hhead)
     fclose(fpass);
 
     // H I S T O R Y
-    FILE* fhist = fopen("history.txt", "w");
+    FILE* fhist = fopen("data/history.txt", "w");
     if(fhist == null)
         printf("history.txt failed to open.");
     else
@@ -412,7 +413,7 @@ Driver* ReadDriver()
     ull d_ID;
     char name[SIZE], vehicletype[SIZE];
 
-    FILE* fp = fopen("driver.txt", "r");
+    FILE* fp = fopen("data/driver.txt", "r");
     if(fp == null)
         printf("driver.txt failed to open.");
     else
@@ -453,7 +454,7 @@ Passenger* ReadPassenger()
     Location p_location, drop_location;
     char name[SIZE];
 
-    FILE* fp = fopen("passenger.txt", "r");
+    FILE* fp = fopen("data/passenger.txt", "r");
     if(fp == null)
         printf("passenger.txt failed to open.");
     else while (!feof(fp))
@@ -493,7 +494,7 @@ History* ReadHistory()
     ull d_ID, p_ID, p_mobile_no, frequency;
     float distance_travelled;
 
-    FILE* fp = fopen("history.txt", "r");
+    FILE* fp = fopen("data/history.txt", "r");
     if(fp == null)
         printf("history.txt failed to open.");
     else
@@ -536,7 +537,7 @@ Status* ReadStatus()
     ull d_ID, status;
     float locx, locy;
 
-    FILE* fp = fopen("status.txt", "r");
+    FILE* fp = fopen("data/status.txt", "r");
     if(fp == null)
         printf("status.txt failed to open.");
     else
@@ -614,9 +615,9 @@ void showDriver()
     ull d_ID;
     char name[SIZE], vehicletype[SIZE];
 
-    printf("D R I V E R ************** SHOW\n");
+    printf("************** DRIVER DETAILS **************\n");
 
-    FILE* fp = fopen("driver.txt", "r");
+    FILE* fp = fopen("data/driver.txt", "r");
     if(fp == null)
         printf("driver.txt failed to open.");
     else
@@ -638,9 +639,9 @@ void showPassenger()
     Location p_location, drop_location;
     char name[SIZE];
 
-    printf("P A S S E N G E R ************** SHOW\n");
+    printf("************** PASSENGER DETAILS **************\n");
 
-    FILE* fp = fopen("passenger.txt", "r");
+    FILE* fp = fopen("data/passenger.txt", "r");
     if(fp == null)
         printf("passenger.txt failed to open.");
     else
@@ -661,9 +662,9 @@ void showHistory()
     ull d_ID, p_ID, p_mobile_no, frequency;
     float distance_travelled;
 
-    printf("H I S T O R Y ************** SHOW\n");
+    printf("************** HISTORY **************\n");
 
-    FILE* fp = fopen("history.txt", "r");
+    FILE* fp = fopen("data/history.txt", "r");
     if(fp == null)
         printf("history.txt failed to open.");
     else
@@ -685,9 +686,9 @@ void showStatus()
     Location location;  
     ull status;
 
-    printf("S T A T U S ************** SHOW\n");
+    printf("************** DRIVER STATUS **************\n");
 
-    FILE* fp = fopen("status.txt", "r");
+    FILE* fp = fopen("data/status.txt", "r");
     if(fp == null)
         printf("status.txt failed to open.");
     else
@@ -746,7 +747,7 @@ float SuccessfulDrivers (Driver* dhead, History* histhead)
             return 0;
         else
         {
-            printf("\n\np IN CalculateCost\n\n");
+            // printf("\n\np IN CalculateCost\n\n");
             return -1;
         }
     }
@@ -770,7 +771,7 @@ float SuccessfulDrivers (Driver* dhead, History* histhead)
 
     if(c == 3)
     {
-        printf("\nC IS 3\n");
+        // printf("\nC IS 3\n");
         leastindex = _leastIndex (e[0].money, e[1].money, e[2].money);
         while(dptr != null && hptr != null)
         {
